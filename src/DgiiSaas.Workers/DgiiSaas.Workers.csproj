@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-DgiiSaas.Workers-a8b6b609-0a58-4293-8ea3-dfaedfb25519</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hangfire.Core" Version="1.8.23" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DgiiSaas.Application\DgiiSaas.Application.csproj" />
+    <ProjectReference Include="..\DgiiSaas.Infrastructure\DgiiSaas.Infrastructure.csproj" />
+    <ProjectReference Include="..\DgiiSaas.Shared\DgiiSaas.Shared.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="DgiiSaas.Api/DgiiSaas.Api.csproj" />
+  <Project Path="DgiiSaas.Application/DgiiSaas.Application.csproj" />
+  <Project Path="DgiiSaas.Domain/DgiiSaas.Domain.csproj" />
+  <Project Path="DgiiSaas.Infrastructure.Hazelcast/DgiiSaas.Infrastructure.Hazelcast.csproj" />
+  <Project Path="DgiiSaas.Infrastructure/DgiiSaas.Infrastructure.csproj" />
+  <Project Path="DgiiSaas.Shared/DgiiSaas.Shared.csproj" />
+  <Project Path="DgiiSaas.Workers/DgiiSaas.Workers.csproj" />
+</Solution>
