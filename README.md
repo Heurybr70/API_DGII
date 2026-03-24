@@ -45,11 +45,18 @@ src/
    dotnet ef database update --project src/DgiiSaas.Infrastructure --startup-project src/DgiiSaas.Api
    ```
 
-### Ejecución
+### Ejecución (Local)
 ```powershell
 cd src/DgiiSaas.Api
 dotnet run --urls http://localhost:5005
 ```
+
+### 🚀 Ejecución con Docker
+Si prefieres no instalar dependencias locales, puedes levantar todo el entorno (API + SQL Server) con Docker:
+```powershell
+docker-compose up --build -d
+```
+Esto levantará la API en `http://localhost:5005` y una instancia de SQL Server lista para usar.
 
 Accede a la documentación en: `http://localhost:5005/scalar/v1`
 
