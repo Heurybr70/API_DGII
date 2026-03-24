@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build
 WORKDIR /app
 
 # Copy solution and project files
@@ -23,11 +23,11 @@ RUN dotnet publish -c Release -o /app/publish /p:UseAppHost=false
 # Stage 2: Run
 FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS final
 WORKDIR /app
-EXPOSE 8080
+EXPOSE 5040
 COPY --from=build /app/publish .
 
 # Environment variables for the container
-ENV ASPNETCORE_URLS=http://+:8080
+ENV ASPNETCORE_URLS=http://+:5040
 ENV ASPNETCORE_ENVIRONMENT=Production
 
 ENTRYPOINT ["dotnet", "DgiiSaas.Api.dll"]
