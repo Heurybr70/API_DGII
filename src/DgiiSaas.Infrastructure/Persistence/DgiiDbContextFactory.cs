@@ -2,6 +2,8 @@ using DgiiSaas.Application.Interfaces;
 using DgiiSaas.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace DgiiSaas.Infrastructure.Persistence;
 
@@ -9,8 +11,17 @@ public class DgiiDbContextFactory : IDesignTimeDbContextFactory<DgiiDbContext>
 {
     public DgiiDbContext CreateDbContext(string[] args)
     {
+        var configuration = new Microsoft.Extensions.Configuration.ConfigurationBuilder()
+            .SetBasePath(System.IO.Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: true)
+            .AddJsonFile($"appsettings.{System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true)
+            .AddEnvironmentVariables()
+            .Build();
+
+        var connectionString = configuration.GetConnectionString("DefaultConnection");
+
         var optionsBuilder = new DbContextOptionsBuilder<DgiiDbContext>();
-        optionsBuilder.UseSqlServer("Server=DESKTOP-N5P1VM2\\SQLEXPRESS;Database=DgiiSaasDB;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=true;",
+        optionsBuilder.UseSqlServer(connectionString,
             b => b.MigrationsAssembly("DgiiSaas.Infrastructure"));
 
         return new DgiiDbContext(optionsBuilder.Options, new DesignTimeTenantContext());
