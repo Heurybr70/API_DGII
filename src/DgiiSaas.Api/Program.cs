@@ -58,14 +58,16 @@ var app = builder.Build();
 
 app.UseSerilogRequestLogging();
 
+app.MapOpenApi();
+app.MapScalarApiReference(options => 
+{
+    options.WithTitle("API DGII SaaS")
+           .WithTheme(ScalarTheme.Moon);
+});
+
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
-    app.MapScalarApiReference(options => 
-    {
-        options.WithTitle("API DGII SaaS")
-               .WithTheme(ScalarTheme.Moon);
-    });
+    // development-specific settings
 }
 
 app.UseRouting();
